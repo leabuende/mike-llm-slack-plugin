@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  slackbot-service:
+    build:
+      context: ./SlackBotService # Path to the directory containing your Flask app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=http://llm-service:8080  # Set API_URL to the URL of llm-service
+    restart: always
+    depends_on:
+      - llm-service
+
+  llm-service:
+    build:
+      context: ./LLMAppService # Path to the directory containing your Python app
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+
+  ngrok:
+    image: wernight/ngrok
+    ports:
+      - "4040:4040" # Ngrok web interface
+    command:
+      - ngrok
+      - http
+      - slackbot-service:3000 # Link to the slackbot-service container

@@ -6,7 +6,7 @@ import subprocess
 load_dotenv()
 
 if __name__ == "__main__":
-    try:
+    try: 
         cmd = ["python3", "./data_retriever/data_ingestion_cron_job.py"]
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError:
