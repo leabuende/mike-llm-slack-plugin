@@ -1,47 +1,23 @@
-import pathway as pw
+import importlib
+import os
+from dotenv import load_dotenv
+import subprocess
 
-from common.embedder import embeddings, index_embeddings
-from common.prompt import prompt
+load_dotenv()
 
+if __name__ == "__main__":
+    # # Fetch data from Rainforest API
+    # try:
+    #     cmd = ["python3", "examples/rainforest/data_ingestion_cron_job.py"]
 
-def run(host, port):
-    # Given a user question as a query from your API
-    query, response_writer = pw.io.http.rest_connector(
-        host=host,
-        port=port,
-        schema=QueryInputSchema,
-        autocommit_duration_ms=50,
-    )
+    #     subprocess.run(cmd, check=True)
+    # except subprocess.CalledProcessError:
+    #     print("Script execution failed.")
+    # except FileNotFoundError:
+    #     print("Python interpreter or the script was not found.")
 
-    # Real-time data coming from external data sources such as jsonlines file
-    sales_data = pw.io.jsonlines.read(
-        "./examples/data",
-        schema=DataInputSchema,
-        mode="streaming"
-    )
-
-    # Compute embeddings for each document using the OpenAI Embeddings API
-    embedded_data = embeddings(context=sales_data, data_to_embed=sales_data.doc)
-
-    # Construct an index on the generated embeddings in real-time
-    index = index_embeddings(embedded_data)
-
-    # Generate embeddings for the query from the OpenAI Embeddings API
-    embedded_query = embeddings(context=query, data_to_embed=pw.this.query)
-
-    # Build prompt using indexed data
-    responses = prompt(index, embedded_query, pw.this.query)
-
-    # Feed the prompt to ChatGPT and obtain the generated answer.
-    response_writer(responses)
-
-    # Run the pipeline
-    pw.run()
-
-
-class DataInputSchema(pw.Schema):
-    doc: str
-
-
-class QueryInputSchema(pw.Schema):
-    query: str
+    # Run Discounts API
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", 8080))
+    app_api = importlib.import_module("api.app")
+    app_api.run(host=host, port=port)

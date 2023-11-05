@@ -59,6 +59,7 @@ def handle_message(event_data):
         if message.get("subtype") is None:
             command = message.get("text")
             channel_id = message["channel"]
+            print(command)
             # Insert logic here
             if any(item in command.lower() for item in greetings): # Test command
                 message = (
@@ -66,7 +67,7 @@ def handle_message(event_data):
                     % message["user"]  # noqa
                 )
             if any(item in command.lower() for item in status_commands):
-                message = projectManagementService.getStatus()
+                message = projectManagementService.getStatus(user=user_id)
             if any(item in command.lower() for item in ticket_commands):
                 message = projectManagementService.getAvailableTicket(message=command, user=user_id)
             slack_client.chat_postMessage(channel=channel_id, text=message)
