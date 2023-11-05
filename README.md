@@ -172,7 +172,7 @@ Don't forget to give the project a star! Thanks again!
 
 Léa Buendé - hello@lea-buende.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [Mike LLM Slack Plugin](https://github.com/leabuende/mike-llm-slack-plugin)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
