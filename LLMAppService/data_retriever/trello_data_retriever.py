@@ -29,10 +29,10 @@ def compare_lists(old, new):
                 break
     return identical_found
 
-def send_request():
+def send_request(data_dir):
     res = requests.get('https://api.trello.com/1/boards/'+ board_id +'/lists?key=' + trello_key + '&token=' + trello_token)
     response = json.loads(res.text)
-    with open('../data/trello_board.jsonl', 'a') as datafile:
+    with open(data_dir, 'a') as datafile:
         for list_item in response:
             cards_res = requests.get('https://api.trello.com/1/lists/'+ list_item["id"] +'/cards?key=' + trello_key + '&token=' + trello_token)
             cards_array = json.loads(cards_res.text)
@@ -42,7 +42,6 @@ def send_request():
             json.dump(entry, datafile)
             datafile.write('\n')
 
-send_request()
     
 
 
