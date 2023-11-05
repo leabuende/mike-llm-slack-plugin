@@ -21,10 +21,12 @@ def format_previous_data():
 def compare_lists(old, new):
     cards_to_check = new["cards"]
     identical_found = False
-    for item in old:
-        if cards_to_check == item["list"]["cards"]:
-            identical_found = True
-            break
+    if(len(old) > 0):
+        for item in old:
+            data = json.loads(item["list"])
+            if cards_to_check == data["cards"]:
+                identical_found = True
+                break
     return identical_found
 
 def send_request():
@@ -35,12 +37,10 @@ def send_request():
             cards_res = requests.get('https://api.trello.com/1/lists/'+ list_item["id"] +'/cards?key=' + trello_key + '&token=' + trello_token)
             cards_array = json.loads(cards_res.text)
             now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            list_object =  {'name': list_item["name"], 'last_updated': now, 'cards': cards_array}
-            entry = {'list': list_object}
-            identicalExists = compare_lists(format_previous_data(), list_object)
-            if(identicalExists == False):
-                json.dump(entry, datafile)
-                datafile.write('\n')
+            list_object =  {"name": list_item["name"], "last_updated": now, "cards": cards_array}
+            entry = {"list": str(list_object)}
+            json.dump(entry, datafile)
+            datafile.write('\n')
 
 send_request()
     

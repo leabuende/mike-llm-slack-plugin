@@ -5,6 +5,7 @@ import os
 from threading import Thread
 from slack import WebClient
 import json
+import re
 
 from services.projectManagementService import projectManagementService
 
@@ -14,6 +15,8 @@ app = Flask(__name__)
 greetings = ["hi", "hello", "hello there", "hey"]
 status_commands = ["status"]
 ticket_commands = ["ticket", "give me work", "what can I do"]
+qa_commands = ["question :", "I have a question", "question !"]
+
 
 
 SLACK_SIGNING_SECRET = os.environ['SLACK_SIGNING_SECRET']
@@ -70,6 +73,11 @@ def handle_message(event_data):
                 message = projectManagementService.getStatus(user=user_id)
             if any(item in command.lower() for item in ticket_commands):
                 message = projectManagementService.getAvailableTicket(message=command, user=user_id)
+            if any(item in command.lower() for item in qa_commands):
+                command = command.replace('<@U064EHEC06M>', '')
+                message = projectManagementService.qa(user=user_id, query=command)
+            markdown_link_pattern = r'\[([^]]+)\]\(([^)]+)\)'
+            message = re.sub(markdown_link_pattern, r'<\2|\1>', message)
             slack_client.chat_postMessage(channel=channel_id, text=message)
     thread = Thread(target=send_reply, kwargs={"value": event_data})
     thread.start()
