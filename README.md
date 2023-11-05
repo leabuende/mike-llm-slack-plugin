@@ -170,7 +170,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Léa Buendé - [@your_twitter](https://twitter.com/your_username) - hello@lea-buende.com
+Léa Buendé - hello@lea-buende.com
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
