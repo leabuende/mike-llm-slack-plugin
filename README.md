@@ -1,9 +1,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-![mike-logo](mike-logo.png)
+  
+<img src="mike-logo.png" width="150" />
 
-  <h3 align="center">Mike - Your Project Management Assistant</h3>
+
+  <h3 align="center">Mike - Your Project Management Assistant 🧠</h3>
 
   <p align="center">
     An awesome LLM plugin for Slack
@@ -85,10 +87,26 @@ In order to get the project up and running, you need to have a Trello Board, a S
 Follow the steps to :
 - Get an [OpenAI API key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)
 - Get the [Trello board ID](https://community.atlassian.com/t5/Trello-questions/How-to-get-Trello-Board-ID/qaq-p/1347525), and the [Trello token and key](https://trello.com/app-key)
+- Get the environment variables for your Slack Bot following [this tutorial](https://medium.com/developer-student-clubs-tiet/how-to-build-your-first-slack-bot-in-2020-with-python-flask-using-the-slack-events-api-4b20ae7b4f86) 
 
 ### Installation
+#### With Docker
+1. Clone the repo
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+2. Rename the Dockerfile.example into Dockerfile, and configure environment variables
+3. Build Docker images
+   ```sh
+   docker-compose build
+   ```
+4. Start the Docker containers
+   ```sh
+   docker-compose up
+   ```
 
-#### Start LLMAppService
+#### Without Docker
+##### Start LLMAppService
 1. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
@@ -103,7 +121,7 @@ Follow the steps to :
    ```sh
    python3 main.py
    ```
-#### Start SlackBotService
+##### Start SlackBotService
 1. Copy and fill the .env file with the keys that you recovered (set API_URL as the URL of LLMAppService)
 
 3. Install packages
@@ -114,13 +132,13 @@ Follow the steps to :
    ```sh
    python3 main.py
    ```
-#### Start Ngrok 
+##### Start Ngrok 
 1. Start tunnel to connect to Slack
    ```sh
    ngrok http 3000
    ```
 
-Then, follow the steps in this article starting at [3. Create a new Slack app](https://medium.com/developer-student-clubs-tiet/how-to-build-your-first-slack-bot-in-2020-with-python-flask-using-the-slack-events-api-4b20ae7b4f86) using your ngrok address to plug your app into your Slack channel.
+Then, follow the steps in this article starting at [3. Create a new Slack app](https://medium.com/developer-student-clubs-tiet/how-to-build-your-first-slack-bot-in-2020-with-python-flask-using-the-slack-events-api-4b20ae7b4f86) using your ngrok address to setup your app for your Slack channel.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -140,8 +158,7 @@ This project can be used for you to monitor your Trello board for your team, hel
 
 - [x] Add cronjob to fetch trello cards regularly
 - [x] Add open QA for users
-- [ ] Fix Dockerfiles
-- [ ] Notify Slakc channel when a new Sprint has been completed
+- [ ] Notify Slack channel when a new Sprint has been completed
 - [ ] Generate performance report as pdf file
 - [ ] Add a document repository to add complementary info on project roadmap and technical specifications
 
