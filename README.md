@@ -93,7 +93,7 @@ Follow the steps to :
 #### With Docker
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/leabuende/mike-llm-slack-plugin.git
    ```
 2. Rename the Dockerfile.example into Dockerfile, and configure environment variables
 3. Build Docker images
@@ -109,7 +109,7 @@ Follow the steps to :
 ##### Start LLMAppService
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/leabuende/mike-llm-slack-plugin.git
    ```
 2. Copy and fill the .env file with the keys that you recovered
 
