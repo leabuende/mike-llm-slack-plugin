@@ -56,7 +56,10 @@
 
 This project is a Project management assistant, using Pathways LLM App to assess a Trello board's data in real time to answer questions and assist in task management.
 Look at a few features we have incorporated now : 
-[Mike Slack App Demo](https://go.wetransfer.com/t-Ya9A1bGN37)
+[Mike Slack App Demo](https://youtu.be/Z0ckF6-YRYY)
+
+[![Mike - Realtime LLM Project Management Assistant](https://img.youtube.com/vi/Z0ckF6-YRYY/0.jpg)](https://www.youtube.com/watch?v=Z0ckF6-YRYY)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
