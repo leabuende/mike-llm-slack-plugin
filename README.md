@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-![8-rLMMhDCxqwB5xMX-removebg-preview](https://github.com/leabuende/mike-llm-slack-plugin/assets/46668755/d59a999a-8501-4571-9158-8d571de40762)
+![mike-logo](mike-logo.png)
 
   <h3 align="center">Mike - Your Project Management Assistant</h3>
 
