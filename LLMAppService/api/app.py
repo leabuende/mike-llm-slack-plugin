@@ -16,7 +16,7 @@ def run(host, port):
         schema=DataInputSchema,
         mode="streaming"
     )
-    embedded_data = embeddings(context=board_data, data_to_embed=board_data.list)
+    embedded_data = embeddings(context=board_data, data_to_embed=board_data.card)
     index = index_embeddings(embedded_data)
     embedded_query = embeddings(context=query, data_to_embed=pw.this.query)
     responses = prompt(index, embedded_query, pw.this.query)
@@ -25,7 +25,7 @@ def run(host, port):
 
 
 class DataInputSchema(pw.Schema):
-    list: str
+    card: str
 
 
 class QueryInputSchema(pw.Schema):

@@ -9,7 +9,6 @@ import re
 
 from services.projectManagementService import projectManagementService
 
-# This `app` represents your existing Flask app
 app = Flask(__name__)
 
 greetings = ["hi", "hello", "hello there", "hey"]
@@ -62,12 +61,10 @@ def handle_message(event_data):
         if message.get("subtype") is None:
             command = message.get("text")
             channel_id = message["channel"]
-            print(command)
-            # Insert logic here
-            if any(item in command.lower() for item in greetings): # Test command
+            if any(item in command.lower() for item in greetings): 
                 message = (
                     "Hello <@%s>! :tada:"
-                    % message["user"]  # noqa
+                    % message["user"] 
                 )
             if any(item in command.lower() for item in status_commands):
                 message = projectManagementService.getStatus(user=user_id)
@@ -78,12 +75,12 @@ def handle_message(event_data):
                 message = projectManagementService.qa(user=user_id, query=command)
             markdown_link_pattern = r'\[([^]]+)\]\(([^)]+)\)'
             message = re.sub(markdown_link_pattern, r'<\2|\1>', message)
+            message = message.replace('\\"', '"')
             slack_client.chat_postMessage(channel=channel_id, text=message)
     thread = Thread(target=send_reply, kwargs={"value": event_data})
     thread.start()
     return Response(status=200)
 
 
-# Start the server on port 3000
 if __name__ == "__main__":
-  app.run(port=3000)
+  app.run(host="0.0.0.0",port=3000)
