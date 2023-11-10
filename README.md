@@ -58,8 +58,9 @@ This project is a Project management assistant, using Pathways LLM App to assess
 Look at a few features we have incorporated now : 
 [Mike Slack App Demo](https://youtu.be/Z0ckF6-YRYY)
 
-[![Mike - Realtime LLM Project Management Assistant](https://img.youtube.com/vi/Z0ckF6-YRYY/0.jpg)](https://www.youtube.com/watch?v=Z0ckF6-YRYY)
-
+<div align="center">
+<img src="demo.gif" width="80%" />
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
